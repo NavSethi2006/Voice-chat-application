@@ -1,0 +1,17 @@
+{
+  "devDependencies": {
+    "electron": "^22.0.0"
+  },
+  "name": "vc-app",
+  "version": "1.0.0",
+  "description": "a vc-app",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "author": "Navin Sethi",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
