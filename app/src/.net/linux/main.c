@@ -7,6 +7,8 @@
 #include <fcntl.h>
 #include <string.h>
 
+#define MAX 10000;
+
 int main(int argc, char *argv[])
 {
     char *dir = "../../../Cwrite";
@@ -23,36 +25,50 @@ int main(int argc, char *argv[])
     int fd_cwrite = open(dir, O_WRONLY);
     int fd_jswrite = open("../../../JSwrite", O_RDONLY);
 
-
     // Send msg
     char conn_mesg_out[200] = "Established connection to C";
     conn_mesg_out[strlen(conn_mesg_out)] = '\0';
     write(fd_cwrite, conn_mesg_out, strlen(conn_mesg_out));
 
-    // Recv message
-    
+    int selection;
 
-    while(1) {
-        
+    while (1)
+    {
+
         int msg = read(fd_jswrite, strin, sizeof(char) * sizeof(strin));
 
-        if(msg > 0) {
+        if (msg > 0)
+        {
+
             strin[msg] = '\0';
-            printf("message recived: %s\n", strin);
-            fflush(stdout);
-        }
 
-        switch(strin[0]) {
-            case '1':
-                printf("shits to login");
-                break;
-            case '2':
-                printf("shit for signup");
-                break;
-        }
+            char new_strin[sizeof(strin)];
+            strcpy(new_strin,strin);
 
+            
+            switch(strin[0]) {
+                case '1':
+                    selection = 1;
+                    break;
+                case '2':
+                    selection = 2;
+
+            }
+
+            switch(selection) {
+                case '1':
+
+                break;
+
+                case '2':
+                break;
+            }
+
+            fflush(stdin);
+            
+            
+        }
     }
-
 
     close(fd_cwrite);
     close(fd_jswrite);

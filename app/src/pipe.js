@@ -4,13 +4,12 @@ const {spawn, fork} = require('child_process');
 
 let fifo = spawn('mkfifo', ['../Cwrite']);
 let write_fifo = spawn('mkfifo', ['../JSwrite']);
-let fifoRs;
-let fifoWs;
+const fd = fs.openSync("../Cwrite",'r+');
+let fifoRs = fs.createReadStream(null, {fd});
+let fifoWs = fs.createWriteStream("../JSwrite");
+
 
 exports.initilize_pipes = function () {
-  const fd = fs.openSync("../Cwrite",'r+');
-  fifoRs = fs.createReadStream(null, {fd});
-  fifoWs = fs.createWriteStream("../JSwrite");
   console.log("named pipe created");
 }
 
